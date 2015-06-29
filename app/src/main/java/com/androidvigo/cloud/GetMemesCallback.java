@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface GetMemesCallback {
 
-        public void onMemesResult (List<MemeEntity> memesList);
+    public void onMemesResult(List<MemeEntity> memesList);
 
-        public void onMemesError ();
-    }
+    public void onMemesError();
+}

@@ -7,27 +7,25 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:fontFamily="sans-serif-light"
+        android:lineSpacingExtra="10dp"
+        android:onClick="startGetMemesRequest"
         android:padding="@dimen/activity_vertical_margin"
         android:text="@string/activity_main_button_text"
-        android:fontFamily="sans-serif-light"
-        android:layout_centerInParent="true"
-        android:lineSpacingExtra="10dp"
-        android:textSize="30sp"
-        android:onClick="startGetMemesRequest"
-        />
+        android:textSize="30sp" />
 
-    <ListView
-        android:id="@+id/activity_main_memes_listview"
+    <view
+        android:id="@+id/activity_main_memes_recyclerview"
+        class="android.support.v7.widget.RecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-    />
+        android:layout_height="match_parent" />
 
     <ProgressBar
         android:id="@+id/activity_main_loading_indicator"
+        style="?android:attr/progressBarStyleLarge"
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:layout_centerInParent="true"
-        android:visibility="gone"
-        style="?android:attr/progressBarStyleLarge"
-        />
+        android:visibility="gone" />
 </RelativeLayout>

@@ -1,18 +1,19 @@
 package com.androidvigo.cloud;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 
 import java.util.List;
 
 
-public class MainActivity extends ActionBarActivity
-    implements GetMemesCallback {
+public class MainActivity extends Activity
+        implements GetMemesCallback {
 
-    private ListView mMemesListView;
+    private RecyclerView mMemesRecyclerView;
     private ProgressBar mLoadingProgressBar;
 
     @Override
@@ -21,7 +22,12 @@ public class MainActivity extends ActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mMemesListView      = (ListView) findViewById(R.id.activity_main_memes_listview);
+        mMemesRecyclerView = (RecyclerView) findViewById(R.id.activity_main_memes_recyclerview);
+        mMemesRecyclerView.setHasFixedSize(true);
+
+        LinearLayoutManager llm = new LinearLayoutManager(this.getBaseContext());
+        mMemesRecyclerView.setLayoutManager(llm);
+
         mLoadingProgressBar = (ProgressBar) findViewById(R.id.activity_main_loading_indicator);
     }
 
@@ -38,14 +44,13 @@ public class MainActivity extends ActionBarActivity
 
         mLoadingProgressBar.setVisibility(View.GONE);
 
-        String [] memesNames = new String[memesList.size()];
+        String[] memesNames = new String[memesList.size()];
 
         for (int i = 0; i < memesList.size(); i++)
             memesNames[i] = memesList.get(i).getTitle();
 
-        MemeAdapter memesAdapter = new MemeAdapter(this, memesList);
-
-        mMemesListView.setAdapter(memesAdapter);
+        RVMemeAdapter memesAdapter = new RVMemeAdapter(memesList);
+        mMemesRecyclerView.setAdapter(memesAdapter);
     }
 
     @Override

@@ -14,12 +14,10 @@ import com.koushikdutta.ion.Ion;
 import java.util.List;
 
 public class MemeAdapter extends ArrayAdapter<MemeEntity> {
-
     private Context mContext;
     private List<MemeEntity> mMemeEntitiesList;
 
     public MemeAdapter(Context context, List<MemeEntity> objects) {
-
         super(context, R.layout.item_meme, objects);
 
         mContext = context;
@@ -28,7 +26,6 @@ public class MemeAdapter extends ArrayAdapter<MemeEntity> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
         convertView = LayoutInflater.from(mContext).inflate(R.layout.item_meme, parent, false);
 
         MemeEntity currentMeme = mMemeEntitiesList.get(position);
@@ -42,15 +39,14 @@ public class MemeAdapter extends ArrayAdapter<MemeEntity> {
 
         // Load the meme image with Ion
         Ion.with(mContext)
-            .load(currentMeme.getPng())
-            .intoImageView(memeImageView);
+                .load(currentMeme.getPng())
+                .intoImageView(memeImageView);
 
         return convertView;
     }
 
     @Override
     public int getCount() {
-
         return mMemeEntitiesList.size();
     }
 }
